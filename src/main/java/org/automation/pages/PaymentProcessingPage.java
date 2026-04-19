@@ -1,7 +1,9 @@
 package org.automation.pages;
 
 import com.codeborne.selenide.Condition;
+import org.automation.configs.CardInfoHolder;
 import org.automation.enums.Currency;
+import org.automation.utilities.Converter;
 import org.openqa.selenium.By;
 
 import java.time.Duration;
@@ -17,23 +19,25 @@ public class PaymentProcessingPage {
     private final By paymentAmountValue = By.cssSelector("[data-testid='price_major']");
     private final By paymentAmountValueInSubmitButton = By.className("SubmitButton_rootText__TkkKK");
 
-    public PaymentProcessingPage typeDefaultValidCardData() {
+    public PaymentProcessingPage fillCardData(CardInfoHolder cardInfo) {
         $(cardNumberInput).shouldBe(Condition.visible, Duration.ofSeconds(5))
-                .val("");
+                .setValue(cardInfo.getCardNumber());
         $(cardExpirationDateInput).shouldBe(Condition.visible)
-                .val("");
+                .setValue(cardInfo.getExpirationDate());
         $(cardCvvInput).shouldBe(Condition.visible)
-                .val("");
+                .setValue(cardInfo.getCvv());
         $(cardHolderInput).shouldBe(Condition.visible)
-                .val("");
+                .setValue(cardInfo.getCardHolder());
         return this;
     }
 
-    public PaymentProcessingPage verifyAmountValueOnPaymentPage(long expectedAmount, Currency currency) {
+    public PaymentProcessingPage verifyAmountValuesOnPaymentPage(long expectedAmount, Currency currency) {
+        var convertedAmount = Converter.convertLongAmountToStringWithCurrency(expectedAmount, currency);
+
         $(paymentAmountValue).shouldBe(Condition.visible, Duration.ofSeconds(5))
-                .shouldHave(Condition.exactText(String.valueOf(expectedAmount)));
+                .shouldHave(Condition.exactText(convertedAmount));
         $(paymentAmountValueInSubmitButton).shouldBe(Condition.visible, Duration.ofSeconds(5))
-                .shouldHave(Condition.exactText(String.valueOf(expectedAmount)));
+                .shouldHave(Condition.exactText("Pay " + convertedAmount));
         return this;
     }
 }

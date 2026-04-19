@@ -1,4 +1,4 @@
-package org.automation.testdata;
+package org.automation.utilities;
 
 import com.github.javafaker.Faker;
 import lombok.experimental.UtilityClass;

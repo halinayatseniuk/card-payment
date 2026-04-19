@@ -9,7 +9,7 @@ import io.restassured.specification.RequestSpecification;
 import org.automation.utilities.SignatureGenerator;
 
 import static io.restassured.RestAssured.given;
-import static org.automation.utilities.JsonConfig.MAPPER;
+import static org.automation.configs.JsonConfig.MAPPER;
 
 public class ApiClient {
 

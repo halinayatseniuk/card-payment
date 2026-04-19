@@ -2,6 +2,7 @@ package org.automation.testdata;
 
 import org.automation.enums.*;
 import org.automation.models.payment.*;
+import org.automation.utilities.FakerGenerator;
 
 import java.time.LocalDateTime;
 import java.util.List;

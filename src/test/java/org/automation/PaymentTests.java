@@ -1,5 +1,6 @@
 package org.automation;
 
+import org.automation.configs.CardTestDataLoader;
 import org.automation.models.payment.PaymentResponseModel;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,8 @@ public class PaymentTests {
                 .id("b9dcd7f5-9aac-41d8-9630-0815e4a525bc")
                 .build();
 
+        var cardValue = CardTestDataLoader.readValidCardDataFromFile();
 
-
+        System.out.println(cardValue);
     }
 }
