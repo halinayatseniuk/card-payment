@@ -39,7 +39,7 @@ public class StatusOrderModel {
     @JsonProperty("order_id")
     private String orderId;
     @JsonProperty("amount")
-    private Integer amount;
+    private Long amount;
     @JsonProperty("currency")
     private String currency;
     @JsonProperty("mid")

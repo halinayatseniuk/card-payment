@@ -1,8 +1,9 @@
 package org.automation.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverConditions;
 import org.automation.configs.CardInfoHolder;
-import org.automation.enums.Currency;
 import org.automation.utilities.Converter;
 import org.openqa.selenium.By;
 
@@ -18,6 +19,12 @@ public class PaymentProcessingPage {
     private final By cardHolderInput = By.cssSelector("[data-testid='cardHolder']");
     private final By paymentAmountValue = By.cssSelector("[data-testid='price_major']");
     private final By paymentAmountValueInSubmitButton = By.className("SubmitButton_rootText__TkkKK");
+    private final By submitButton = By.cssSelector("[data-testid='submit']");
+
+    public PaymentProcessingPage openPage(String url) {
+        Selenide.open(url);
+        return this;
+    }
 
     public PaymentProcessingPage fillCardData(CardInfoHolder cardInfo) {
         $(cardNumberInput).shouldBe(Condition.visible, Duration.ofSeconds(5))
@@ -31,7 +38,7 @@ public class PaymentProcessingPage {
         return this;
     }
 
-    public PaymentProcessingPage verifyAmountValuesOnPaymentPage(long expectedAmount, Currency currency) {
+    public PaymentProcessingPage verifyAmountValuesOnPaymentPage(long expectedAmount, String currency) {
         var convertedAmount = Converter.convertLongAmountToStringWithCurrency(expectedAmount, currency);
 
         $(paymentAmountValue).shouldBe(Condition.visible, Duration.ofSeconds(5))
@@ -39,5 +46,14 @@ public class PaymentProcessingPage {
         $(paymentAmountValueInSubmitButton).shouldBe(Condition.visible, Duration.ofSeconds(5))
                 .shouldHave(Condition.exactText("Pay " + convertedAmount));
         return this;
+    }
+
+    public PaymentProcessingPage submit() {
+        $(submitButton).shouldBe(Condition.visible).click();
+        return this;
+    }
+
+    public void verifyPaymentSuccessful(String expectedUrl) {
+        Selenide.webdriver().shouldHave(WebDriverConditions.url(expectedUrl), Duration.ofSeconds(5));
     }
 }

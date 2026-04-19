@@ -6,7 +6,7 @@ import org.automation.enums.Currency;
 @UtilityClass
 public class Converter {
 
-    public String convertLongAmountToStringWithCurrency(long amount, Currency currency) {
+    public String convertLongAmountToStringWithCurrency(long amount, String currency) {
         String val = String.valueOf(amount);
         int len = val.length();
         String valueBeforePoint = "0";
@@ -20,6 +20,6 @@ public class Converter {
         } else {
             valueAfterPoint = "0" + val;
         }
-        return valueBeforePoint + "," + valueAfterPoint + " " + currency;
+        return Currency.valueOf(currency).getCurrencySign() + valueBeforePoint + "." + valueAfterPoint;
     }
 }
