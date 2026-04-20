@@ -14,10 +14,9 @@ public class StatusClient {
         this.apiClient = new ApiClient(BASE_URL);
     }
 
-    public StatusResponseModel getStatus(StatusOrderModel orderRequest, int statusCode) {
+    public StatusResponseModel getStatus(StatusOrderModel orderRequest) {
         return apiClient.post(STATUS_ENDPOINT, orderRequest)
                 .then()
-                .statusCode(statusCode)
                 .extract()
                 .response()
                 .as(StatusResponseModel.class);

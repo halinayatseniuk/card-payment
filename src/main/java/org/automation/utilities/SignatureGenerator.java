@@ -13,13 +13,4 @@ public class SignatureGenerator {
                 .hashString(text, StandardCharsets.UTF_8).toString().getBytes();
         return Base64.getEncoder().encodeToString(hashedBytes);
     }
-
-    // remove
-    public static void main(String[] args) {
-        String publicKey = "";
-        String jsonString = "{\"order_id\":\"ebdc1622-abee-43a3-aaa8-1d1ac64cbf6d\"}";
-        String secretKey = "";
-        String signature = generateSignature(publicKey, jsonString, secretKey);
-        System.out.println(signature);
-    }
 }

@@ -8,10 +8,6 @@ public class PaymentFlow {
 
     private final PaymentProcessingPage paymentPage = new PaymentProcessingPage();
 
-    public static PaymentFlow getInstance() {
-        return new PaymentFlow();
-    }
-
     public void payWithValidCard(String url, PaymentOrderModel paymentData) {
         var validCard = CardTestDataLoader.readValidCardDataFromFile();
 

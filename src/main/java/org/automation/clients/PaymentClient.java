@@ -14,7 +14,7 @@ public class PaymentClient {
         this.apiClient = new ApiClient(BASE_URL);
     }
 
-    public PaymentResponseModel createPayment(PaymentRequestModel paymentRequest, int statusCode) {
+    public PaymentResponseModel createPayment(PaymentRequestModel paymentRequest) {
         return apiClient.post(STATUS_ENDPOINT, paymentRequest)
                 .then()
                 .extract()
