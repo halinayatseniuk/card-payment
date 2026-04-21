@@ -41,3 +41,7 @@ API_KEY=api_pk_ SECRET_KEY=api_sk_ ./gradlew test
 - Lombok
 - Jackson
 - Faker
+
+### Test execution (local run)
+
+<img width="664" height="182" alt="2026-04-21_14h56_39" src="https://github.com/user-attachments/assets/071911eb-a20e-497f-985f-3c08585270c7" />
